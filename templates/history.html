@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Prediction History{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1><i class="fa-solid fa-clock-rotate-left"></i> Prediction History</h1>
+  <p>All your past predictions, most recent first.</p>
+</div>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Date</th><th>Probability</th><th>Category</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+      {% for r in records %}
+      <tr>
+        <td>{{ r.created_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+        <td>{{ r.probability }}%</td>
+        <td><span class="badge badge-{{ r.category|lower }}">{{ r.category }}</span></td>
+        <td><a href="{{ url_for('result', prediction_id=r.id) }}" class="btn btn-outline btn-sm">View</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No predictions yet. <a href="{{ url_for('predict') }}">Run your first prediction</a>.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

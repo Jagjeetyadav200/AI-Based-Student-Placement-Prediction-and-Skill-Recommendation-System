@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Student Details{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+    <div>
+      <h1><i class="fa-solid fa-user-graduate"></i> Student Details</h1>
+      <p>Complete profile and prediction history for {{ student.name }}.</p>
+    </div>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline btn-sm">
+      <i class="fa-solid fa-arrow-left"></i> Back to Admin
+    </a>
+  </div>
+</div>
+
+<div class="section-block">
+  <div class="detail-card">
+    <div class="detail-card-header">
+      <div class="student-avatar"><i class="fa-solid fa-user"></i></div>
+      <div>
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.email }}</p>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-item"><span>Student ID</span><strong>{{ student.id }}</strong></div>
+      <div class="detail-item"><span>Registered</span><strong>{{ student.created_at.strftime('%d %b %Y, %I:%M %p') }}</strong></div>
+      <div class="detail-item"><span>Profile Status</span><strong>{{ 'Completed' if student.cgpa is not none else 'Not completed' }}</strong></div>
+      <div class="detail-item"><span>Last Updated</span><strong>{{ student.updated_at.strftime('%d %b %Y, %I:%M %p') if student.updated_at else '—' }}</strong></div>
+    </div>
+  </div>
+</div>
+
+{% if student.cgpa is not none %}
+<div class="section-block">
+  <h2>Academic Details</h2>
+  <div class="detail-card">
+    <div class="detail-grid">
+      <div class="detail-item"><span>CGPA</span><strong>{{ student.cgpa }}</strong></div>
+      <div class="detail-item"><span>10th Percentage</span><strong>{{ student.tenth_percentage }}%</strong></div>
+      <div class="detail-item"><span>12th Percentage</span><strong>{{ student.twelfth_percentage }}%</strong></div>
+      <div class="detail-item"><span>Backlogs</span><strong>{{ student.backlogs }}</strong></div>
+      <div class="detail-item"><span>Projects</span><strong>{{ student.projects }}</strong></div>
+      <div class="detail-item"><span>Internships</span><strong>{{ student.internships }}</strong></div>
+      <div class="detail-item"><span>Certifications</span><strong>{{ student.certifications }}</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-block">
+  <h2>Skills & Assessment</h2>
+  <div class="detail-card">
+    <div class="detail-grid">
+      <div class="detail-item"><span>Communication</span><strong>{{ student.communication_level }}/10</strong></div>
+      <div class="detail-item"><span>DSA</span><strong>{{ student.dsa_level }}/10</strong></div>
+      <div class="detail-item"><span>Python</span><strong>{{ student.python_level }}/10</strong></div>
+      <div class="detail-item"><span>SQL</span><strong>{{ student.sql_level }}/10</strong></div>
+      <div class="detail-item"><span>Aptitude Score</span><strong>{{ student.aptitude_score }}%</strong></div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="section-block">
+  <div class="empty-state detail-card">
+    <i class="fa-solid fa-file-circle-exclamation"></i>
+    <p>This student has registered but has not completed their profile yet.</p>
+  </div>
+</div>
+{% endif %}
+
+<div class="section-block">
+  <h2>Prediction History</h2>
+  <div class="table-wrap" style="padding:0; margin:0;">
+    <table>
+      <thead><tr><th>Date</th><th>Probability</th><th>Category</th></tr></thead>
+      <tbody>
+        {% for p in predictions %}
+        <tr>
+          <td>{{ p.created_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+          <td>{{ p.probability }}%</td>
+          <td><span class="badge badge-{{ p.category|lower }}">{{ p.category }}</span></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="3">No predictions generated yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

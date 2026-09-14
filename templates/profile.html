@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="section-block" style="max-width:740px;">
+  <div class="card">
+    <div class="auth-icon"><i class="fa-solid fa-id-card"></i></div>
+    <h2>Student Profile</h2>
+    <p class="subtitle">This data is used directly for placement prediction — keep it up to date.</p>
+    <form method="POST">
+      <div class="form-section-title"><i class="fa-solid fa-book"></i> Academics</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>CGPA (0–10)</label>
+          <input type="number" step="0.01" min="0" max="10" name="cgpa" value="{{ profile.cgpa if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>10th Percentage</label>
+          <input type="number" step="0.01" min="0" max="100" name="tenth_percentage" value="{{ profile.tenth_percentage if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>12th Percentage</label>
+          <input type="number" step="0.01" min="0" max="100" name="twelfth_percentage" value="{{ profile.twelfth_percentage if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Active Backlogs</label>
+          <input type="number" min="0" name="backlogs" value="{{ profile.backlogs if profile else '0' }}" required>
+        </div>
+      </div>
+
+      <div class="form-section-title"><i class="fa-solid fa-briefcase"></i> Experience</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Number of Projects</label>
+          <input type="number" min="0" name="projects" value="{{ profile.projects if profile else '0' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Internships Completed</label>
+          <input type="number" min="0" name="internships" value="{{ profile.internships if profile else '0' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Certifications</label>
+          <input type="number" min="0" name="certifications" value="{{ profile.certifications if profile else '0' }}" required>
+        </div>
+      </div>
+
+      <div class="form-section-title"><i class="fa-solid fa-code"></i> Skills (rate yourself 1–10)</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>DSA Level</label>
+          <input type="number" min="1" max="10" name="dsa_level" value="{{ profile.dsa_level if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Python Level</label>
+          <input type="number" min="1" max="10" name="python_level" value="{{ profile.python_level if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>SQL Level</label>
+          <input type="number" min="1" max="10" name="sql_level" value="{{ profile.sql_level if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Communication Level</label>
+          <input type="number" min="1" max="10" name="communication_level" value="{{ profile.communication_level if profile else '' }}" required>
+        </div>
+        <div class="form-group">
+          <label>Aptitude Score (0–100)</label>
+          <input type="number" step="0.01" min="0" max="100" name="aptitude_score" value="{{ profile.aptitude_score if profile else '' }}" required>
+          <div class="form-hint">Percentage score from mock aptitude tests</div>
+        </div>
+      </div>
+
+      <br>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Save Profile</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

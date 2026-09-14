@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Run Prediction{% endblock %}
+{% block content %}
+<div class="section-block" style="max-width:640px;">
+  <div class="card">
+    <div class="auth-icon"><i class="fa-solid fa-bolt"></i></div>
+    <h2>Run Placement Prediction</h2>
+    <p class="subtitle">This will use your saved profile data below.</p>
+    <table style="margin-bottom:22px;">
+      <tr><td><i class="fa-solid fa-star"></i> CGPA</td><td>{{ profile.cgpa }}</td></tr>
+      <tr><td><i class="fa-solid fa-book"></i> 10th / 12th %</td><td>{{ profile.tenth_percentage }} / {{ profile.twelfth_percentage }}</td></tr>
+      <tr><td><i class="fa-solid fa-triangle-exclamation"></i> Backlogs</td><td>{{ profile.backlogs }}</td></tr>
+      <tr><td><i class="fa-solid fa-diagram-project"></i> Projects / Internships / Certs</td><td>{{ profile.projects }} / {{ profile.internships }} / {{ profile.certifications }}</td></tr>
+      <tr><td><i class="fa-solid fa-code"></i> DSA / Python / SQL</td><td>{{ profile.dsa_level }} / {{ profile.python_level }} / {{ profile.sql_level }}</td></tr>
+      <tr><td><i class="fa-solid fa-comments"></i> Communication / Aptitude</td><td>{{ profile.communication_level }} / {{ profile.aptitude_score }}</td></tr>
+    </table>
+    <form method="POST">
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-wand-magic-sparkles"></i> Run Prediction</button>
+    </form>
+    <div class="form-footer"><a href="{{ url_for('profile') }}">Edit profile first</a></div>
+  </div>
+</div>
+{% endblock %}

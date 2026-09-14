@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}AI Placement System — Discover Your Career Potential{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="badge-pill reveal"><i class="fa-solid fa-sparkles"></i> AI-POWERED CAREER INTELLIGENCE</span>
+      <h1 class="hero-title reveal" style="transition-delay:.08s">
+        Discover Your <span class="text-gradient">Career Potential.</span>
+      </h1>
+      <p class="hero-subtitle reveal" style="transition-delay:.16s">
+        Our system analyzes your academic profile, technical skills, and experience to predict your placement readiness — then tells you exactly which skills to strengthen before interview season.
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:.24s">
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">Explore Platform</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" style="transition-delay:.2s">
+      <div class="orb"></div>
+      <svg class="orbit-lines" viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="url(#g1)" stroke-width="1" stroke-dasharray="4 6" opacity="0.35"/>
+        <circle cx="200" cy="200" r="110" fill="none" stroke="url(#g1)" stroke-width="1" stroke-dasharray="2 6" opacity="0.25"/>
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6d5efc"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="float-card fc-1">
+        <div class="fc-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="fc-label">Placement Score</div>
+        <div class="fc-value">82%</div>
+      </div>
+      <div class="float-card fc-2">
+        <div class="fc-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="fc-label">DSA Skill</div>
+        <div class="fc-value">Improving <i class="fa-solid fa-arrow-trend-up"></i></div>
+      </div>
+      <div class="float-card fc-3">
+        <div class="fc-icon"><i class="fa-solid fa-medal"></i></div>
+        <div class="fc-label">Category</div>
+        <div class="fc-value"><span class="badge badge-high">HIGH</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-card reveal">
+      <div class="trust-icon"><i class="fa-solid fa-brain"></i></div>
+      <h3>AI-Powered Analysis</h3>
+      <p>A Random Forest model trained on academic and skill data evaluates your profile holistically.</p>
+    </div>
+    <div class="trust-card reveal" style="transition-delay:.08s">
+      <div class="trust-icon"><i class="fa-solid fa-user-check"></i></div>
+      <h3>Personalized Insights</h3>
+      <p>Every result is specific to your profile — no generic advice, just your actual strengths and gaps.</p>
+    </div>
+    <div class="trust-card reveal" style="transition-delay:.16s">
+      <div class="trust-icon"><i class="fa-solid fa-list-check"></i></div>
+      <h3>Skill Recommendations</h3>
+      <p>Transparent, rule-based logic tells you precisely which skills to prioritize next.</p>
+    </div>
+    <div class="trust-card reveal" style="transition-delay:.24s">
+      <div class="trust-icon"><i class="fa-solid fa-gauge-high"></i></div>
+      <h3>Placement Readiness</h3>
+      <p>Get a clear HIGH / MEDIUM / LOW readiness category, backed by real evaluation metrics.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-section" id="how-it-works">
+  <div class="section-heading reveal">
+    <span class="eyebrow">How It Works</span>
+    <h2>From profile to placement-ready, in four steps</h2>
+  </div>
+  <div class="how-steps">
+    <div class="how-step reveal">
+      <div class="how-num">01</div>
+      <h3>Build Profile</h3>
+      <p>Enter your academics, projects, internships and self-rated skills.</p>
+    </div>
+    <div class="how-step reveal" style="transition-delay:.08s">
+      <div class="how-num">02</div>
+      <h3>Analyze Skills</h3>
+      <p>Your profile is checked against thresholds for every core skill.</p>
+    </div>
+    <div class="how-step reveal" style="transition-delay:.16s">
+      <div class="how-num">03</div>
+      <h3>Get AI Prediction</h3>
+      <p>A trained model estimates your placement probability instantly.</p>
+    </div>
+    <div class="how-step reveal" style="transition-delay:.24s">
+      <div class="how-num">04</div>
+      <h3>Improve & Prepare</h3>
+      <p>Follow your recommended skills and re-check your progress anytime.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

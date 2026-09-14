@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</h1>
+  <p>System-wide statistics.</p>
+</div>
+
+<div class="dashboard-grid">
+  <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-users"></i></div><div class="label">Total Students</div><div class="value">{{ total_students }}</div></div>
+  <div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-chart-column"></i></div><div class="label">Total Predictions</div><div class="value">{{ total_predictions }}</div></div>
+  <div class="stat-card"><div class="stat-icon" style="background:var(--success-light); color:var(--success);"><i class="fa-solid fa-arrow-up"></i></div><div class="label">High</div><div class="value" style="color:var(--success);">{{ high_count }}</div></div>
+  <div class="stat-card"><div class="stat-icon" style="background:var(--warning-light); color:var(--warning);"><i class="fa-solid fa-minus"></i></div><div class="label">Medium</div><div class="value" style="color:var(--warning);">{{ medium_count }}</div></div>
+  <div class="stat-card"><div class="stat-icon" style="background:var(--danger-light); color:var(--danger);"><i class="fa-solid fa-arrow-down"></i></div><div class="label">Low</div><div class="value" style="color:var(--danger);">{{ low_count }}</div></div>
+</div>
+
+<div class="section-block">
+  <h2>Category Breakdown</h2>
+  <div class="chart-card">
+    <canvas id="categoryChart" data-high="{{ high_count }}" data-medium="{{ medium_count }}" data-low="{{ low_count }}"></canvas>
+  </div>
+</div>
+
+<div class="section-block">
+  <h2>Registered Students</h2>
+  <div class="table-wrap" style="padding:0; margin:0;">
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Action</th></tr></thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.created_at.strftime('%d %b %Y') }}</td>
+          <td>
+            <a href="{{ url_for('admin_student_details', student_id=s.id) }}" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-eye"></i> View Details
+            </a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No students registered yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

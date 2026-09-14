@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Welcome back, {{ session['name'] }} 👋</h1>
+  <p>Here's a snapshot of your placement readiness.</p>
+</div>
+
+<div class="dashboard-grid">
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-percent"></i></div>
+    <div class="label">Latest Probability</div>
+    <div class="value">{{ latest_prediction.probability if latest_prediction else '—' }}{% if latest_prediction %}%{% endif %}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-medal"></i></div>
+    <div class="label">Category</div>
+    <div class="value">
+      {% if latest_prediction %}
+        <span class="badge badge-{{ latest_prediction.category|lower }}">{{ latest_prediction.category }}</span>
+      {% else %} — {% endif %}
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+    <div class="label">CGPA</div>
+    <div class="value">{{ profile.cgpa if profile else '—' }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div>
+    <div class="label">Projects</div>
+    <div class="value">{{ profile.projects if profile else '—' }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+    <div class="label">Internships</div>
+    <div class="value">{{ profile.internships if profile else '—' }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+    <div class="label">Certifications</div>
+    <div class="value">{{ profile.certifications if profile else '—' }}</div>
+  </div>
+</div>
+
+<div class="section-block">
+  <h2>Quick Actions</h2>
+  <div class="quick-actions">
+    {% if not profile %}
+      <a href="{{ url_for('profile') }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Complete Your Profile</a>
+    {% else %}
+      <a href="{{ url_for('profile') }}" class="btn btn-outline"><i class="fa-solid fa-pen"></i> Update Profile</a>
+      <a href="{{ url_for('predict') }}" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Run New Prediction</a>
+    {% endif %}
+    <a href="{{ url_for('history') }}" class="btn btn-outline"><i class="fa-solid fa-clock-rotate-left"></i> View History</a>
+  </div>
+</div>
+{% endblock %}

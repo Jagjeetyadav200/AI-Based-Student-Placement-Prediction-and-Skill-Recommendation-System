@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} — Something Went Wrong{% endblock %}
+{% block content %}
+<div class="section-block" style="text-align:center; padding-top:60px; padding-bottom:60px;">
+  <div style="font-size:5rem; font-weight:800; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;">
+    {{ code }}
+  </div>
+  <h2 style="margin:12px 0 8px;">{{ title }}</h2>
+  <p class="subtitle" style="max-width:420px; margin:0 auto 24px;">{{ message }}</p>
+  <a href="{{ url_for('home') }}" class="btn btn-primary"><i class="fa-solid fa-house"></i> Back to Home</a>
+</div>
+{% endblock %}

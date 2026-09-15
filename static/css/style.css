@@ -209,23 +209,117 @@ a:focus-visible, button:focus-visible, input:focus-visible, .btn:focus-visible {
 .nav-toggle.active span:nth-child(2) { opacity: 0; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 900px) { .nav-user-name { display: none; } }
+@media (max-width: 900px) {
+  .nav-user-name { display: inline; }
+}
 
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
+  .navbar-inner {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .brand {
+    font-size: 1rem;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex: 0 0 38px;
+  }
+
   .nav-collapsible {
-    position: absolute; top: 100%; left: 0; right: 0;
-    flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    padding: 10px 24px 22px;
-    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(13,15,28,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 18px 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
   }
-  .nav-collapsible.open { opacity: 1; visibility: visible; transform: translateY(0); }
-  .nav-links { flex-direction: column; gap: 2px; }
-  .nav-link { padding: 11px 0; }
-  .nav-right { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
-  .nav-user-name { display: inline; }
+
+  .nav-collapsible.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 4px;
+    font-size: 0.95rem;
+  }
+
+  .nav-right {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-user {
+    width: 100%;
+    min-height: 44px;
+    padding: 4px 0;
+  }
+
+  .nav-user-name {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav-right .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-inner {
+    padding: 0 12px;
+  }
+
+  .brand {
+    font-size: 0.94rem;
+  }
+
+  .nav-collapsible {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 }
 
 /* ============ Scroll-reveal utility ============ */

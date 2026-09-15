@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---- Mobile nav toggle ----
   const navToggle = document.getElementById("navToggle");
-  const navCollapsible = document.getElementById("navCollapsible");
+  const navCollapsible = document.getElementById("navLinks");
   if (navToggle && navCollapsible) {
     navToggle.addEventListener("click", () => {
       const isOpen = navCollapsible.classList.toggle("open");
